@@ -20,9 +20,22 @@ public class SinglyLinkedList<T> implements List<T> {
 
     @Override
     public void addFirst(T element) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'addFirst'");
-    }
+        boolean empty = isEmpty();
+
+        ListNode<T> temp = new ListNode<T>(element);
+
+        if ((empty)) {
+            this.head = temp;
+            this.tail = this.head;
+
+        }
+
+        else {
+
+            this.head = this.head.setNext(temp);
+            ;
+        }
+    } // addFirst()
 
     // =========================================================================================================
 

@@ -1,51 +1,26 @@
 package com.sebastian.utils;
 
-
 /**
  * ListNode
  */
-public class ListNode<T>{
+public class ListNode<T> {
 
+    protected ListNode<T> next;
 
-    private ListNode<T> next;
+    protected T data;
 
-    private T  data;
-
-    public ListNode<T> getNext() {
-        return this.next;
-    } // getNext()
-
-    public void setNext(ListNode<T> next) {
-        this.next = next;
-    } // setNext()
-
-    public T getData() {
-        return this.data;
-    } // getData()
-
-    public void setData(T data) {
-        this.data = data;
-    } // setData()
-
-
-    //================================================================================================
-
+    // ================================================================================================
 
     public ListNode() {
-        setData(null);
-        setNext(null);
+        this.data = null;
+        this.next = null;
     } // ListNode()
 
+    public ListNode(T data) {
 
-    public ListNode(T data){
-
-        setData(data);
+        this.data = data;
+        this.next = null;
 
     } // ListNode()
 
-
-    
-
-
-    
 } // class
