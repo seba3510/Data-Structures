@@ -68,9 +68,8 @@ public class SinglyLinkedList<T> implements List<T> {
 
     @Override
     public boolean isEmpty() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'isEmpty'");
-    }
+        return ((this.size == 0));
+    } // isEmpty()
 
     // =========================================================================================================
 
@@ -82,7 +81,6 @@ public class SinglyLinkedList<T> implements List<T> {
 
     @Override
     public int size() {
-
-    }
-
+        return this.size;
+    }// size()
 } // class
