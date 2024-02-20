@@ -52,11 +52,17 @@ public class SinglyLinkedList<T> implements List<T> {
 
     @Override
     public T peek() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'peek'");
-    }
+        boolean empty = isEmpty();
 
-    // =========================================================================================================
+        if ((empty)) {
+            String err = "Empty list";
+            throw new EmptyLinkedListException(err);
+        } // if()
+
+        T val = this.head.getData();
+        return val;
+    } // peek()
+      // =========================================================================================================
 
     @Override
     public boolean remove(T element) {
