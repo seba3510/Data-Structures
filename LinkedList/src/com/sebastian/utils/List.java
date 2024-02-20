@@ -87,4 +87,6 @@ public interface List<T> {
      */
     boolean contains(T element);
 
+    int size();
+
 } // interface

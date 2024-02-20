@@ -80,4 +80,9 @@ public class SinglyLinkedList<T> implements List<T> {
         throw new UnsupportedOperationException("Unimplemented method 'contains'");
     }
 
+    @Override
+    public int size() {
+
+    }
+
 } // class
