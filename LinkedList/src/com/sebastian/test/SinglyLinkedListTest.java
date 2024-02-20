@@ -2,6 +2,7 @@ package com.sebastian.test;
 
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import java.beans.Transient;
@@ -11,6 +12,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.sebastian.utils.SinglyLinkedList;
+import com.sebastian.utils.EmptyLinkedListException;
 
 public class SinglyLinkedListTest {
 
@@ -157,25 +159,6 @@ public class SinglyLinkedListTest {
     // =====================================================================================
 
     @Test
-    public void testContainsAsExpected() {
-
-        int elem1 = 5;
-        boolean result1 = this.list.contains(elem1);
-        assertTrue(result1);
-
-        int elem2 = 4;
-        boolean result2 = this.list.contains(elem2);
-        assertTrue(result2);
-
-        int elem3 = 8;
-        boolean result3 = this.list.contains(elem3);
-        assertTrue(result3);
-
-    }// testContainsAsExpected()
-
-    // =====================================================================================
-
-    @Test
     public void testContainsForEmptyList() {
 
         try {
@@ -227,11 +210,112 @@ public class SinglyLinkedListTest {
         try {
             int elem = 5;
             new SinglyLinkedList<Integer>().remove(elem);
-        } catch (EmptySinglyLinkedListException e) {
+        } catch (EmptyLinkedListException e) {
             String expected = "Cannot remove an element on an empty list";
             String result = e.getMessage();
 
         } // catch()
 
     } // testRemoveForEmptyList()
+
+    // =====================================================================================
+
+    @Test
+    public void testPeekAsExpected() {
+
+        int expected = 6;
+        int result = this.list.peek();
+        assertEquals(expected, result);
+
+    } // testPeekAsExpected()
+
+    // =====================================================================================
+
+    @Test
+    public void testPeekForEmptyList() {
+
+        try {
+            new SinglyLinkedList<Integer>().peek();
+
+            String err = "EmptyLinkedListException expected to be thrown";
+            fail(err);
+
+        } catch (EmptyLinkedListException e) {
+            String expected = "Empty list";
+            String result = e.getMessage();
+            assertEquals(expected, result);
+        } // catch()
+
+    } // testPeekForEmptyList()
+
+    // =====================================================================================
+
+    @Test
+    public void testPeekWhenRemovingElements() {
+
+        this.list.removeFirst();
+        this.list.removeFirst();
+        this.list.removeFirst();
+
+        int expected = 3;
+        int result = this.list.peek();
+        assertEquals(expected, result);
+    } // testPeekWhenRemovingElements()
+
+    // =====================================================================================
+
+    @Test
+    public void testContainsAsExpected() {
+
+        int elem1 = 5;
+        boolean result1 = this.list.contains(elem1);
+        assertTrue((result1));
+
+        int elem2 = 2;
+        boolean result2 = this.list.contains(elem2);
+        assertTrue((result2));
+
+        int elem3 = 4;
+        boolean result3 = this.list.contains(elem3);
+        assertTrue((result3));
+
+    } // testContainsAsExpected()
+
+    // =====================================================================================
+
+    @Test
+    public void testSizeAsExpected() {
+
+        int expected = 6;
+        int result = this.list.size();
+        assertEquals(expected, result);
+
+    } // testSizeAsExpected()
+
+    // =====================================================================================
+
+    @Test
+    public void testSizeForEmptyList() {
+
+        int result = new SinglyLinkedList<Integer>().size();
+        int expected = 0;
+        assertEquals(expected, result);
+
+    } // testSizeForEmptyList()
+
+    // =====================================================================================
+
+    @Test
+    public void testSizeWhenRemovingElements() {
+
+        int n = 4;
+
+        for (int i = 0; i < n; i++) {
+            this.list.removeFirst();
+        } // for()
+
+        int expected = 2;
+        int result = this.list.size();
+        assertEquals(expected, result);
+    } // testSizeWhenRemovingElements()
 } // class
