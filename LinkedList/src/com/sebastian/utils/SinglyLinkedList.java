@@ -1,5 +1,7 @@
 package com.sebastian.utils;
 
+import javax.print.DocFlavor.STRING;
+
 public class SinglyLinkedList<T> implements List<T> {
 
     private ListNode<T> head;
@@ -32,18 +34,35 @@ public class SinglyLinkedList<T> implements List<T> {
 
         else {
 
-            this.head = this.head.setNext(temp);
-            ;
+            temp.next = this.head;
+            this.head = temp;
         }
+
+        incrementSize();
     } // addFirst()
 
     // =========================================================================================================
 
     @Override
     public void addLast(T element) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'addLast'");
-    }
+
+        ListNode<T> temp = new ListNode<T>(element);
+
+        boolean empty = isEmpty();
+
+        if ((empty)) {
+            addFirst(element);
+
+        }
+
+        else {
+
+            this.tail.next = temp;
+            this.tail = temp;
+        }
+
+        incrementSize();
+    } // addLast()
 
     // =========================================================================================================
 
@@ -72,7 +91,7 @@ public class SinglyLinkedList<T> implements List<T> {
             throw new EmptyLinkedListException(err);
         } // if()
 
-        T val = this.head.getData();
+        T val = this.head.data;
         return val;
     } // peek()
       // =========================================================================================================
@@ -102,4 +121,36 @@ public class SinglyLinkedList<T> implements List<T> {
     public int size() {
         return this.size;
     }// size()
+
+    // =========================================================================================================
+
+    private void incrementSize() {
+
+        this.size++;
+
+    } // incrementSize()
+
+    // =========================================================================================================
+
+    @Override
+    public String toString() {
+
+        String list = "";
+        ListNode<T> curr = this.head;
+
+        while ((curr != null)) {
+
+            list += curr.data;
+
+            if ((curr.next != null)) {
+                list += "-> ";
+            }
+
+            curr = curr.next;
+
+        } // while()
+
+        return list;
+    } // toString()
+
 } // class

@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.fail;
 
-import java.beans.Transient;
 import java.util.NoSuchElementException;
 
 import org.junit.Before;
@@ -47,7 +46,7 @@ public class SinglyLinkedListTest {
     @Test
     public void testToStringAsExpected() {
 
-        String expected = "6-> 5-> 4-> 3-> 2-> 1";
+        String expected = "3-> 2-> 1-> 4-> 5-> 6";
         String result = this.list.toString();
         assertEquals(expected, result);
 
@@ -61,7 +60,7 @@ public class SinglyLinkedListTest {
         this.list.addFirst(7);
         this.list.addFirst(8);
         this.list.addFirst(9);
-        String expected = "9-> 8-> 7-> 6-> 5-> 4-> 3-> 2-> 1";
+        String expected = "9-> 8-> 7-> 3-> 2-> 1-> 4-> 5-> 6";
         String result = this.list.toString();
         assertEquals(expected, result);
 
