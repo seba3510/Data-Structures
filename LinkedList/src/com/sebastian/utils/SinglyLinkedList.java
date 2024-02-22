@@ -1,6 +1,6 @@
 package com.sebastian.utils;
 
-import javax.print.DocFlavor.STRING;
+import java.util.NoSuchElementException;
 
 public class SinglyLinkedList<T> implements List<T> {
 
@@ -68,9 +68,24 @@ public class SinglyLinkedList<T> implements List<T> {
 
     @Override
     public boolean removeFirst() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'removeFirst'");
-    }
+
+        boolean empty = isEmpty();
+
+        if ((empty)) {
+            String err = "Cannot remove an element from an empty list";
+            throw new EmptyLinkedListException(err);
+
+        } // if()
+
+        boolean removed = false;
+
+        this.head = this.head.next;
+        decrementSize();
+        removed = true;
+
+        return removed;
+
+    } // removeLast()
 
     // =========================================================================================================
 
@@ -131,6 +146,12 @@ public class SinglyLinkedList<T> implements List<T> {
     } // incrementSize()
 
     // =========================================================================================================
+
+    private void decrementSize() {
+
+        this.size--;
+    } // decrementSize()
+      // =========================================================================================================
 
     @Override
     public String toString() {
