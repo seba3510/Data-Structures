@@ -1,5 +1,7 @@
 package com.sebastian.utils;
 
+import static org.junit.jupiter.api.Assertions.fail;
+
 import java.util.NoSuchElementException;
 
 public class SinglyLinkedList<T> implements List<T> {
@@ -74,7 +76,6 @@ public class SinglyLinkedList<T> implements List<T> {
         if ((empty)) {
             String err = "Cannot remove an element from an empty list";
             throw new EmptyLinkedListException(err);
-
         } // if()
 
         boolean removed = false;
@@ -85,17 +86,47 @@ public class SinglyLinkedList<T> implements List<T> {
 
         return removed;
 
-    } // removeLast()
+    } // removeFirst()
 
     // =========================================================================================================
 
     @Override
     public boolean removeLast() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'removeLast'");
-    }
 
-    // =========================================================================================================
+        boolean empty = isEmpty();
+
+        int n = this.size;
+
+        if ((empty)) {
+            String err = "Cannot remove an element on an empty list";
+            throw new EmptyLinkedListException(err);
+
+        }
+
+        else if ((n == 1)) {
+            removeFirst();
+
+        }
+
+        ListNode<T> curr = this.head;
+        return removeLast(curr);
+
+    }// removeLast()
+     // =========================================================================================================
+
+    private boolean removeLast(ListNode<T> curr) {
+
+        if ((curr.next == this.tail)) {
+            this.tail = curr;
+            curr.next = null;
+            decrementSize();
+            return true;
+
+        } // if()
+
+        curr = curr.next;
+        return removeLast(curr);
+    } // removeLast()
 
     @Override
     public T peek() {
@@ -165,7 +196,7 @@ public class SinglyLinkedList<T> implements List<T> {
 
             if ((curr.next != null)) {
                 list += "-> ";
-            }
+            } // if()
 
             curr = curr.next;
 

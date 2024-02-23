@@ -85,10 +85,7 @@ public class SinglyLinkedListTest {
     public void testRemoveFirstAsExpected() {
 
         int n = 3;
-
-        for (int i = 0; i < n; i++) {
-            this.list.removeFirst();
-        } // for()
+        travelListForRemoveFirst(n);
 
         String expected = "4-> 5-> 6";
         String result = this.list.toString();
@@ -99,6 +96,14 @@ public class SinglyLinkedListTest {
         assertEquals(expectedSize, resultSize);
 
     } // testRemoveFirstAsExpected()
+
+    private void travelListForRemoveFirst(int n) {
+
+        for (int i = 0; i < n; i++) {
+            this.list.removeFirst();
+        } // for()
+
+    } // travelListForRemoveFirst()
 
     // =====================================================================================
 
@@ -126,13 +131,11 @@ public class SinglyLinkedListTest {
     @Test
     public void testRemoveLastAsExpected() {
 
-        int n = 3;
+        this.list.removeLast();
+        this.list.removeLast();
+        this.list.removeLast();
 
-        for (int i = 0; i < n; i++) {
-            this.list.removeLast();
-        } // for()
-
-        String expected = "1-> 2-> 3";
+        String expected = "3-> 2-> 1";
         String result = this.list.toString();
         assertEquals(expected, result);
 
@@ -156,7 +159,7 @@ public class SinglyLinkedListTest {
 
         } catch (EmptyLinkedListException e) {
 
-            String expected = "Cannot remove an element on an empty list!";
+            String expected = "Cannot remove an element on an empty list";
             String result = e.getMessage();
             assertEquals(expected, result);
         } // catch()
